@@ -1,17 +1,5 @@
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-// function showTime() {
-//   const date = new Date();
-//   return (
-//     date.getHours() +
-//     "HRS:" +
-//     date.getMinutes() +
-//     "Mins:" +
-//     date.getSeconds() +
-//     "secs"
-//   );
-// }
-
 function makeAJAXCall(methodType, url, callback, async = true, data) {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
@@ -33,27 +21,26 @@ function makeAJAXCall(methodType, url, callback, async = true, data) {
   xhr.open(methodType, url, async);
   if (data) {
     console.log(JSON.stringify(data));
-    xhr.setRequestHeader("Content-Type", "applicaton/json");
-    console.log(xhr);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(data));
   } else xhr.send();
-  console.log(methodType + "request sent to the server at:");
+  console.log(methodType + "Request sent to the server at:");
 }
 
-// const getURL = " http://localhost:3000/employee";
-// function getUserDetails(data) {
-//   console.log("Get User Data:" + data);
-// }
-// makeAJAXCall("GET", getURL, getUserDetails, true);
+const getURL = " http://localhost:3000/employee";
+function getUserDetails(data) {
+  console.log("Get User Data:" + data);
+}
+makeAJAXCall("GET", getURL, getUserDetails, true);
 
-// const deleteURL = "http://localhost:3000/employee/4";
-// function userDeleted(data) {
-//   console.log("USer deleted" + data);
-// }
-// makeAJAXCall("DELETE", deleteURL, userDeleted, false);
+const deleteURL = "http://localhost:3000/employee/4";
+function userDeleted(data) {
+  console.log("USer deleted" + data);
+}
+makeAJAXCall("DELETE", deleteURL, userDeleted, false);
 
 const postURL = "http://localhost:3000/employee";
-const emplData = { "name": "Anju", "department": "Sales" };
+const emplData = { name: "Anju", department: "Sales" };
 function userAdded(data) {
   console.log("User Added" + data);
 }
